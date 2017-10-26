@@ -11,6 +11,12 @@ var HOST = '0.0.0.0';
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+//enable crossdomain
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 app.get('/', (req, res) => {
   res.send('You have arrived at servicemonstah');
@@ -22,15 +28,18 @@ app.post('/query', function (req, res) {
 	var broh = req.body.broh;
 	
 	var html;
+
+	console.log('inputs:',species,broh)
 	
 	if (species == 'babyWheel') {
 		html = "<p class='bubble' style:'margin:8px;padding:10px;'>holee shit dood its a " + species + "!</p>";
 	}  
-	if ((species == 'seaTuhtal') || (species == 'tuner') || (species == 'floundah')) {
+	else if ((species == 'seaTuhtal') || (species == 'tuner') || (species == 'floundah')) {
+		console.log('match found')
 		html = "<p class='bubble' style:'margin:8px;padding:10px;'>its a fackin " + species + " dood</p>";
 	}
 	//there isn't a species, just unknown
-	if (species == 'unknown') {
+	else if (species == 'unknown') {
 		html = "<p class='bubble' style:'margin:8px;padding:10px;'>we ah seein' some shit we ain't never seen before " + broh + "</br>Try one of these: babyWheel,seaTuhtal,tuner,floundah</p>";
 	}
 	else {
