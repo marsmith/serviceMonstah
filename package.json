@@ -1,7 +1,7 @@
 {
   "name": "servicemonstah",
   "version": "1.0.0",
-  "description": "",
+  "description": "based on tutorial: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

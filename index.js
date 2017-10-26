@@ -3,6 +3,11 @@ var app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
 
+// Constants
+var PORT = 8080;
+var HOST = '0.0.0.0';
+
+//need parser to read POST requests
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -36,4 +41,5 @@ app.post('/query', function (req, res) {
 	res.send(html)
 })
 
-app.listen(3000, () => console.log('Server running'));
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
